@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#090b0d" />
+  <title>Ashes of the Forgotten</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="world" aria-label="Ashes of the Forgotten game world"></canvas>
+    <div class="vignette"></div>
+    <div class="grain"></div>
+
+    <header class="topbar">
+      <div class="brand-mark"><span class="sigil">✦</span><div><div class="brand">ASHES <i>OF THE</i> FORGOTTEN</div><div class="chapter">A SOULS-LIKE JOURNEY</div></div></div>
+      <div class="top-right"><span class="zone-label"><span class="pulse-dot"></span> THE ASHEN FRONTIER</span><button class="icon-btn" id="menu-open" title="Menu">☰</button></div>
+    </header>
+
+    <section class="player-hud">
+      <div class="portrait"><span>✧</span><small>WANDERER</small></div>
+      <div class="resource-bars">
+        <div class="resource-row"><span class="bar-icon">♥</span><div class="bar-track"><div id="health-fill" class="bar-fill health-fill"></div><span id="health-text" class="bar-text"></span></div></div>
+        <div class="resource-row"><span class="bar-icon stamina-icon">◆</span><div class="bar-track"><div id="stamina-fill" class="bar-fill stamina-fill"></div></div></div>
+        <div class="resource-row"><span class="bar-icon focus-icon">◈</span><div class="bar-track"><div id="focus-fill" class="bar-fill focus-fill"></div></div></div>
+      </div>
+      <div class="level-chip"><span>LV</span><b id="level">01</b></div>
+    </section>
+
+    <div class="objective"><span class="objective-mark">✣</span><div><small>YOUR FATE</small><b id="objective-text">Seek the fallen king</b></div><span id="objective-distance">NORTH · 84M</span></div>
+
+    <div class="minimap-frame"><canvas id="minimap" width="150" height="150"></canvas><div class="map-caption">THE FRONTIER <span>✦</span></div></div>
+
+    <div class="currency"><span class="rune-icon">◉</span><span id="souls">0</span><small>ASHEN RUNE</small></div>
+
+    <div class="boss-hud" id="boss-hud"><div class="boss-title"><span>✦</span><b id="boss-name">THE FALLEN KING</b><span>✦</span></div><div class="boss-track"><div id="boss-fill"></div></div><div class="boss-meta"><span id="boss-phase">THE CROWNLESS</span><span id="boss-health-label">100%</span></div></div>
+
+    <div class="toast" id="toast"></div>
+    <div class="interact-prompt" id="interact-prompt"><kbd>E</kbd><span>Rest at the Ashen Shrine</span></div>
+
+    <div class="controls-hint"><span><kbd>WASD</kbd> MOVE</span><span><kbd>SPACE</kbd> DODGE</span><span><kbd>F</kbd> LOCK ON</span><span><kbd>R</kbd> REST</span></div>
+
+    <div class="mobile-controls" id="mobile-controls">
+      <div class="mobile-stick" id="stick"><div class="stick-knob"></div></div>
+      <div class="mobile-actions"><button data-action="lock">◎</button><button data-action="block">◒</button><button class="roll-btn" data-action="dodge">↗</button><button class="attack-btn" data-action="heavy">⚔</button><button class="attack-btn light" data-action="attack">✦</button></div>
+    </div>
+
+    <nav class="bottom-nav"><button class="nav-item active" data-panel="inventory"><span>⚔</span><small>ARSENAL</small></button><button class="nav-item" data-panel="character"><span>♙</span><small>ATTRIBUTES</small></button><button class="nav-item" data-panel="quests"><span>✧</span><small>JOURNAL</small></button><button class="nav-item" data-panel="map"><span>⌖</span><small>WORLD</small></button><button class="nav-item" data-panel="settings"><span>⚙</span><small>OPTIONS</small></button></nav>
+
+    <section class="panel" id="panel"><div class="panel-card"><div class="panel-heading"><div><small id="panel-kicker">THE WANDERER'S KIT</small><h2 id="panel-title">Arsenal</h2></div><button id="panel-close" class="close-btn">×</button></div><div id="panel-content"></div></div></section>
+
+    <section class="title-screen" id="title-screen"><div class="title-content"><div class="title-symbol">✦</div><p class="eyebrow">A TALE OF ASH AND REMEMBRANCE</p><h1>ASHES <i>OF THE</i><br>FORGOTTEN</h1><div class="title-rule"><span></span>✦<span></span></div><p class="title-copy">The old kingdoms have fallen silent.<br>Only the embers remember your name.</p><button id="begin" class="primary-btn">BEGIN THE DESCENT <span>→</span></button><small class="title-foot">A SOULS-LIKE ACTION RPG · A WORLD LOST TO ASH</small></div></section>
+
+    <section class="modal" id="death-modal"><div class="modal-card death-card"><div class="title-symbol">☽</div><p class="eyebrow">THE EMBERS FADE</p><h2>YOU HAVE FALLEN</h2><p id="death-copy">Your lost runes remain where you fell.</p><button class="primary-btn" id="return-shrine">RISE AGAIN <span>→</span></button></div></section>
+    <section class="modal" id="victory-modal"><div class="modal-card"><div class="title-symbol">✦</div><p class="eyebrow">A SOUL REMEMBERED</p><h2 id="victory-title">THE KING IS SILENT</h2><p id="victory-copy">The first ember stirs.</p><button class="primary-btn" id="victory-continue">CONTINUE <span>→</span></button></div></section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
